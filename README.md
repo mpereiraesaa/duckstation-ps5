@@ -45,6 +45,19 @@ Each release has two downloads:
 DuckStation keeps its settings, memory cards, save states and screenshots in
 `/data/DuckStationPS5/` too.
 
+### Updating from 1.0
+
+Your settings, memory cards and save states stay. Over FTP:
+
+1. Copy the zip's `homebrew/PPSA99990` folder over the one on the PS5.
+2. Copy the zip's `DuckStationPS5/system/profiles/duckstation.profile` over
+   the one on the PS5.
+3. For [frame generation](#frame-generation), with DuckStation closed, add
+   `SkipPresentingDuplicateFrames = true` under `[Display]` in
+   `/data/DuckStationPS5/settings.ini`.
+
+The DuckStation build is the same as 1.0's: no need to copy it again.
+
 ## Playing
 
 Open **DuckStation PS5** from the home screen. It is ready to play: the
@@ -61,8 +74,8 @@ DuckStation's **Settings**, for every game or per game.
 |---|---|
 | Buttons, sticks, d-pad, L1/R1/L2/R2 | the PlayStation controller's (analog) |
 | Options | Start |
-| Create | Select |
-| **Touchpad** | DuckStation's menu: save and load states, settings, cheats, change disc, exit |
+| **Touchpad, left half** | Select (Create works too, but it also opens the PS5's capture menu) |
+| **Touchpad, right half** | DuckStation's menu: save and load states, settings, cheats, change disc, exit |
 | **Hold L3 + R3** (both sticks) | fast forward, while held |
 
 In DuckStation's menus: d-pad or left stick to move, Cross to choose,
@@ -78,11 +91,37 @@ by themselves. Packs of the newer kind (`texpage-*.png`) also need the
 texture cache: in the game's **Game Properties > Graphics > Texture
 Replacements**, turn on **Enable Texture Cache** for that game.
 
+### Frame generation
+
+Many PlayStation games draw 30 frames a second. With frame generation the
+PS5 makes the picture between each two of them, so they move at 60. It is
+off by default. To turn it on, edit
+`/data/DuckStationPS5/system/profiles/duckstation.profile` over FTP:
+
+```ini
+[display]
+; optional: shows "30 -> 60" in the top left
+show_fps = true
+framegen = 2
+```
+
+Comments go on their own lines, as above: a line with a comment after its
+value stops the app from starting.
+
+- Use it for 30 fps games. A game that already runs at 60 (many 2D and
+  racing games) plays slower with it: set `framegen = off` again.
+- The pictures between are made by
+  [MihawkGen](https://github.com/mihawk-99/PS5_MihawkGen)'s neural network in
+  the PS5's GPU. Fast motion can show some smearing, and the game reacts
+  about one frame (33 ms) later.
+- It needs DuckStation's `SkipPresentingDuplicateFrames = true`, which a
+  new install has (see [Updating from 1.0](#updating-from-10)).
+
 ## Which DuckStation
 
 | DuckStation PS5 | DuckStation build | Commit | SHA-256 of the zip |
 |---|---|---|---|
-| 1.0 | `0.1-12442-gdd4a0eb77` (2026-10-25) | [`dd4a0eb`](https://github.com/stenzek/duckstation/commit/dd4a0eb779296a525f8b10b6d9a45911ad6d088f) | `b55d1cf45bdb6d0326a9083cf787ca7d6386dff6c837f6d3b8713f48af2a02b7` |
+| 1.0, 1.1 | `0.1-12442-gdd4a0eb77` (2026-10-25) | [`dd4a0eb`](https://github.com/stenzek/duckstation/commit/dd4a0eb779296a525f8b10b6d9a45911ad6d088f) | `b55d1cf45bdb6d0326a9083cf787ca7d6386dff6c837f6d3b8713f48af2a02b7` |
 
 Use the zip from the same release: the app is tested with that build.
 DuckStation's own updater does not work on the console; a new DuckStation
@@ -96,8 +135,9 @@ comes with a new DuckStation PS5 release.
   download, and its icon is DuckStation's duck.
 - The app runs DuckStation through
   [prospero-win](https://github.com/mpereiraesaa/prospero-win) (LGPL-2.1),
-  with Wine, Mesa's RADV driver and FreeType. `homebrew/PPSA99990`
-  carries their licences (`LICENSE`, `THIRD_PARTY.md`, `LICENSES/`) and the
+  with Wine, Mesa's RADV driver and FreeType, and frame generation by
+  [MihawkGen](https://github.com/mihawk-99/PS5_MihawkGen) (Mihawk, GPL-3.0).
+  `homebrew/PPSA99990` carries their licences (`LICENSE`, `THIRD_PARTY.md`, `LICENSES/`) and the
   source revision of each part (`SOURCES.txt`).
 - PlayStation is a trademark of Sony Interactive Entertainment. No BIOS,
   game or Sony software is included.
@@ -141,6 +181,19 @@ Cada release trae dos descargas:
 DuckStation guarda también ahí, en `/data/DuckStationPS5/`, sus ajustes,
 tarjetas de memoria, estados guardados y capturas.
 
+#### Actualizar desde la 1.0
+
+Tus ajustes, tarjetas de memoria y estados guardados se mantienen. Por FTP:
+
+1. Copia la carpeta `homebrew/PPSA99990` del zip encima de la de la PS5.
+2. Copia `DuckStationPS5/system/profiles/duckstation.profile` del zip encima
+   del de la PS5.
+3. Para la [generación de frames](#generación-de-frames), con DuckStation
+   cerrado, añade `SkipPresentingDuplicateFrames = true` bajo `[Display]` en
+   `/data/DuckStationPS5/settings.ini`.
+
+El build de DuckStation es el mismo de la 1.0: no hace falta volver a copiarlo.
+
 ### Jugar
 
 Abre **DuckStation PS5** desde el home. Viene listo para jugar: el DualSense
@@ -157,8 +210,8 @@ juego.
 |---|---|
 | Botones, sticks, cruceta, L1/R1/L2/R2 | los del mando de PlayStation (analógico) |
 | Options | Start |
-| Create | Select |
-| **Touchpad** | el menú de DuckStation: guardar y cargar estados, ajustes, trucos, cambiar disco, salir |
+| **Touchpad, mitad izquierda** | Select (Create también, pero además abre el menú de capturas de la PS5) |
+| **Touchpad, mitad derecha** | el menú de DuckStation: guardar y cargar estados, ajustes, trucos, cambiar disco, salir |
 | **Mantener L3 + R3** (los dos sticks) | avance rápido, mientras los mantienes |
 
 En los menús de DuckStation: cruceta o stick izquierdo para moverte, X para
@@ -172,6 +225,32 @@ Pon el pack en `/data/DuckStationPS5/textures/<serial>/` (por ejemplo
 Los packs de fondos (`vram-write-*.png`) cargan solos. Los del formato nuevo
 (`texpage-*.png`) necesitan además la caché de texturas: en **Game Properties >
 Graphics > Texture Replacements** del juego, activa **Enable Texture Cache**.
+
+#### Generación de frames
+
+Muchos juegos de PlayStation dibujan 30 frames por segundo. Con la generación
+de frames, la PS5 crea la imagen intermedia entre cada dos, y se mueven a 60.
+Viene apagada. Para activarla, edita por FTP
+`/data/DuckStationPS5/system/profiles/duckstation.profile`:
+
+```ini
+[display]
+; opcional: muestra "30 -> 60" arriba a la izquierda
+show_fps = true
+framegen = 2
+```
+
+Los comentarios van en su propia línea, como arriba: una línea con un
+comentario detrás del valor impide que la app arranque.
+
+- Úsala en juegos a 30 fps. Un juego que ya va a 60 (muchos 2D y de
+  carreras) va más lento con ella: vuelve a poner `framegen = off`.
+- Las imágenes intermedias las hace la red neuronal de
+  [MihawkGen](https://github.com/mihawk-99/PS5_MihawkGen) en la GPU de la
+  PS5. En movimientos rápidos puede verse algo de estela, y el juego responde
+  más o menos un frame (33 ms) más tarde.
+- Necesita `SkipPresentingDuplicateFrames = true` en DuckStation, que una
+  instalación nueva ya trae (ver [Actualizar desde la 1.0](#actualizar-desde-la-10)).
 
 ### Qué DuckStation
 
@@ -189,7 +268,8 @@ llega con un nuevo release de DuckStation PS5.
   de DuckStation.
 - La app ejecuta DuckStation mediante
   [prospero-win](https://github.com/mpereiraesaa/prospero-win) (LGPL-2.1), con
-  Wine, el driver RADV de Mesa y FreeType. `homebrew/PPSA99990` lleva sus
-  licencias y la revisión de cada parte (`SOURCES.txt`).
+  Wine, el driver RADV de Mesa y FreeType, y la generación de frames de
+  [MihawkGen](https://github.com/mihawk-99/PS5_MihawkGen) (Mihawk, GPL-3.0).
+  `homebrew/PPSA99990` lleva sus licencias y la revisión de cada parte (`SOURCES.txt`).
 - PlayStation es una marca de Sony Interactive Entertainment. No se incluye
   ninguna BIOS, juego ni software de Sony.

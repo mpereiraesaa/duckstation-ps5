@@ -174,6 +174,12 @@ def sources(args: argparse.Namespace, report: dict, out: Path) -> None:
         f"  RADV (libvulkan.prx)  https://github.com/mpereiraesaa/PS5_Mesa  commit {src['ps5_mesa']},",
         f"    linked by https://github.com/mpereiraesaa/PS5_Vulkan  commit {src.get('ps5_vulkan')}",
         f"  Lapy JB Daemon (lapy.elf)  {lapy.get('release_url')}",
+    ]
+    mihawkgen = pw / "third_party" / "mihawkgen" / "COMMIT"
+    if mihawkgen.is_file():
+        lines.append(f"  MihawkGen (frame generation, in libvulkan.prx)  https://github.com/mihawk-99/PS5_MihawkGen"
+                     f"  commit {mihawkgen.read_text().strip()}")
+    lines += [
         "",
         "THIRD_PARTY.md and LICENSES/ in the app folder say what each part is and its licence.",
     ]
