@@ -1,0 +1,7 @@
+Unzip duckstation-windows-x64-release.zip here, so that this folder holds
+duckstation-qt-x64-ReleaseLTCG.exe. Use the zip from the same DuckStation PS5
+release: it is the official build, unchanged, that this release was made for.
+
+Descomprime aqui duckstation-windows-x64-release.zip, de modo que esta carpeta
+contenga duckstation-qt-x64-ReleaseLTCG.exe. Usa el zip del mismo release de
+DuckStation PS5: es el build oficial, sin cambios, para el que se hizo.

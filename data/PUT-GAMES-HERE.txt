@@ -1,0 +1,5 @@
+Put your games here, one folder per game if you like (.cue/.bin, .chd, .pbp,
+.iso, .m3u...). They show up in DuckStation's Game List by themselves.
+
+Pon aqui tus juegos, si quieres una carpeta por juego (.cue/.bin, .chd, .pbp,
+.iso, .m3u...). Aparecen solos en la Game List de DuckStation.

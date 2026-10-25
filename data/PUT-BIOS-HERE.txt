@@ -1,0 +1,7 @@
+Put your PlayStation BIOS here (for example scph5501.bin for US games,
+scph5502.bin for European ones, scph5500.bin for Japanese ones). It is not
+included: dump it from your own console.
+
+Pon aqui tu BIOS de PlayStation (por ejemplo scph5501.bin para juegos de
+EE. UU., scph5502.bin para europeos, scph5500.bin para japoneses). No se
+incluye: extraela de tu propia consola.
